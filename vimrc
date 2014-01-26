@@ -64,9 +64,6 @@ if has('python')
 Bundle 'klen/python-mode'
 endif
 
-" minibufexplorer
-let g:miniBufExplAutoStart = 1
-
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'simple'
