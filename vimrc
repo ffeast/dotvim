@@ -47,7 +47,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
 " easy commenting
 Bundle 'scrooloose/nerdcommenter'
-" ?
+" cool snippets & prerequisite for pdv
 Bundle 'SirVer/ultisnips'
 " req for php documentor
 Bundle 'tobyS/vmustache'
