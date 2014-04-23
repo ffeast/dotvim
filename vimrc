@@ -59,6 +59,8 @@ Bundle 'vim-scripts/TaskList.vim'
 Bundle 'ffeast/vim-plugin-viewdoc'
 " nginx highlighting
 Bundle 'vim-scripts/nginx.vim'
+" ack from vim
+Bundle 'mileszs/ack.vim'
 
 if has('python')
 Bundle 'klen/python-mode'
@@ -67,6 +69,9 @@ endif
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'simple'
+
+" ack
+let g:ack_default_options = ''
 
 " nerdtree
 let g:NERDTreeDirArrows = 0
@@ -78,6 +83,7 @@ let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
 " git-fugitive
 map <Leader>gs <ESC>:Gstatus<CR>
 map <Leader>gd <ESC>:Gdiff<CR>
+map <Leader>gb <ESC>:Gblame<CR>
 map <Leader>gw <ESC>:Gwrite<CR>
 map <Leader>gc <ESC>:Gcommit<CR>
 map <Leader>gca <ESC>:Gcommit -a<CR>
@@ -94,7 +100,10 @@ let g:pymode_folding = 0
 let g:pymode_trim_whitespaces = 1
 let g:pymode_lint_on_fly = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
-let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope = 1
+let g:pymode_rope_completion = 0
+let g:pymode_rope_goto_definition_bind = '<Leader>g'
+let g:pymode_rope_goto_definition_cmd = 'new'
 
 map <Leader>c :TlistToggle<CR>
 map <Leader>f :NERDTreeToggle<CR>
@@ -104,6 +113,7 @@ nmap <C-h> <C-W>h
 nmap <C-j> <C-W>j
 nmap <C-k> <C-W>k
 nmap <C-l> <C-W>l
+map <Leader>q <C-W>q
 
 " nginx
 au BufRead,BufNewFile /etc/nginx/* if &ft == '' | setfiletype nginx | endif
