@@ -61,6 +61,8 @@ Bundle 'ffeast/vim-plugin-viewdoc'
 Bundle 'vim-scripts/nginx.vim'
 " ack from vim
 Bundle 'mileszs/ack.vim'
+" javascript
+Bundle 'pangloss/vim-javascript'
 
 if has('python')
 Bundle 'klen/python-mode'
