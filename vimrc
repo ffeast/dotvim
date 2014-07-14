@@ -61,14 +61,19 @@ Bundle 'ffeast/vim-plugin-viewdoc'
 Bundle 'vim-scripts/nginx.vim'
 " allows for tab mapping
 Bundle 'ervandew/supertab'
-
-if has('python')
+" ack from vim
+Bundle 'mileszs/ack.vim'
+" javascript
+Bundle 'pangloss/vim-javascript'
+" python autocomplete
 Bundle "davidhalter/jedi-vim"
-endif
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'simple'
+
+" ack
+let g:ack_default_options = ''
 
 " nerdtree
 let g:NERDTreeDirArrows = 0
@@ -80,6 +85,7 @@ let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
 " git-fugitive
 map <Leader>gs <ESC>:Gstatus<CR>
 map <Leader>gd <ESC>:Gdiff<CR>
+map <Leader>gb <ESC>:Gblame<CR>
 map <Leader>gw <ESC>:Gwrite<CR>
 map <Leader>gc <ESC>:Gcommit<CR>
 map <Leader>gca <ESC>:Gcommit -a<CR>
@@ -97,6 +103,7 @@ nmap <C-h> <C-W>h
 nmap <C-j> <C-W>j
 nmap <C-k> <C-W>k
 nmap <C-l> <C-W>l
+map <Leader>q <C-W>q
 
 " nginx
 au BufRead,BufNewFile /etc/nginx/* if &ft == '' | setfiletype nginx | endif
