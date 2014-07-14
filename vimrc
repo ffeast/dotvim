@@ -59,9 +59,11 @@ Bundle 'vim-scripts/TaskList.vim'
 Bundle 'ffeast/vim-plugin-viewdoc'
 " nginx highlighting
 Bundle 'vim-scripts/nginx.vim'
+" allows for tab mapping
+Bundle 'ervandew/supertab'
 
 if has('python')
-Bundle 'klen/python-mode'
+Bundle "davidhalter/jedi-vim"
 endif
 
 " vim-ariline
@@ -72,7 +74,7 @@ let g:airline_theme = 'simple'
 let g:NERDTreeDirArrows = 0
 
 " php documenting
-map <buffer> <Leader>p :call pdv#DocumentWithSnip()<CR>
+map <buffer> <Leader>h :call pdv#DocumentWithSnip()<CR>
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
 
 " git-fugitive
@@ -86,15 +88,6 @@ map <Leader>gp <ESC>:Git push<CR>
 " gitv
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
-
-" python-mode
-let g:pymode_lint = 1
-let g:pymode_lint_write = 0
-let g:pymode_folding = 0
-let g:pymode_trim_whitespaces = 1
-let g:pymode_lint_on_fly = 1
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
-let g:pymode_rope_complete_on_dot = 0
 
 map <Leader>c :TlistToggle<CR>
 map <Leader>f :NERDTreeToggle<CR>
