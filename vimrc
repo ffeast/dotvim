@@ -43,6 +43,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/taglist.vim'
 " git wrapper
 Bundle 'tpope/vim-fugitive'
+" hg wrapper
+Bundle 'phleet/vim-mercenary'
 " repository viewer
 Bundle 'gregsexton/gitv'
 " easy commenting
@@ -65,8 +67,14 @@ Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
 " javascript
 Bundle 'pangloss/vim-javascript'
-" python autocomplete
-Bundle "davidhalter/jedi-vim"
+" req for easytags
+Bundle 'xolox/vim-misc'
+" ctags for all languages
+Bundle 'xolox/vim-easytags'
+" bufexplorer
+Bundle 'vim-scripts/bufexplorer.zip'
+" python indentation
+Bundle 'hynek/vim-python-pep8-indent'
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
@@ -78,9 +86,18 @@ let g:ack_default_options = ''
 " nerdtree
 let g:NERDTreeDirArrows = 0
 
+" ctags
+let g:easytags_async = 1
+let g:easytags_auto_update = 0
+let g:easytags_on_cursorhold = 0
+let b:easytags_auto_highlight = 0
+let g:easytags_events = ['BufWritePost']
+let g:easytags_by_filetype = '~/.vim/tags'
+map <Leader>u <ESC>:UpdateTags -R %:p:h<CR>
+
 " php documenting
-map <buffer> <Leader>h :call pdv#DocumentWithSnip()<CR>
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
+map <Leader>h :call pdv#DocumentWithSnip()<CR>
 
 " git-fugitive
 map <Leader>gs <ESC>:Gstatus<CR>
@@ -97,6 +114,8 @@ let g:Gitv_WipeAllOnClose = 1
 
 map <Leader>c :TlistToggle<CR>
 map <Leader>f :NERDTreeToggle<CR>
+autocmd VimEnter * NERDTree
+autocmd BufEnter * NERDTreeMirror
 
 " windows navigation
 nmap <C-h> <C-W>h
