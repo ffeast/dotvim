@@ -71,20 +71,31 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'xolox/vim-misc'
 " ctags for all languages
 Bundle 'xolox/vim-easytags'
-" bufexplorer
-Bundle 'vim-scripts/bufexplorer.zip'
 " python indentation
 Bundle 'hynek/vim-python-pep8-indent'
+" c++ indentation
+Bundle 'vim-scripts/google.vim'
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'simple'
 
+" ctrlp
+map <Leader>b :CtrlPBuffer<CR>
+
 " ack
 let g:ack_default_options = ''
+" highlight word at cursor and then Ack it.
+nnoremap <leader>a *<C-O>:AckFromSearch!<CR>
 
 " nerdtree
 let g:NERDTreeDirArrows = 0
+map <Leader>f :NERDTreeToggle<CR>
+map <Leader>F :NERDTreeFind<CR>
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd VimEnter * NERDTree
+"autocmd BufEnter * NERDTreeMirror
 
 " ctags
 let g:easytags_async = 1
@@ -93,7 +104,11 @@ let g:easytags_on_cursorhold = 0
 let b:easytags_auto_highlight = 0
 let g:easytags_events = ['BufWritePost']
 let g:easytags_by_filetype = '~/.vim/tags'
+map <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 map <Leader>u <ESC>:UpdateTags -R %:p:h<CR>
+
+" c++ namespaces
+set cino=N-s
 
 " php documenting
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
@@ -113,9 +128,6 @@ map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
 map <Leader>c :TlistToggle<CR>
-map <Leader>f :NERDTreeToggle<CR>
-autocmd VimEnter * NERDTree
-autocmd BufEnter * NERDTreeMirror
 
 " windows navigation
 nmap <C-h> <C-W>h
