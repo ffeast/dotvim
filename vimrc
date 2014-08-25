@@ -75,6 +75,14 @@ Bundle 'xolox/vim-easytags'
 Bundle 'vim-scripts/bufexplorer.zip'
 " python indentation
 Bundle 'hynek/vim-python-pep8-indent'
+" ansible
+Bundle 'chase/vim-ansible-yaml'
+" vagrant
+Bundle 'markcornick/vim-vagrant'
+" toggle between one window and multi-window
+Bundle 'vim-scripts/ZoomWin'
+" less
+Bundle 'groenewege/vim-less'
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
@@ -85,6 +93,7 @@ let g:ack_default_options = ''
 
 " nerdtree
 let g:NERDTreeDirArrows = 0
+let g:NERDTreeWinSize = 50
 
 " ctags
 let g:easytags_async = 1
@@ -94,6 +103,9 @@ let b:easytags_auto_highlight = 0
 let g:easytags_events = ['BufWritePost']
 let g:easytags_by_filetype = '~/.vim/tags'
 map <Leader>u <ESC>:UpdateTags -R %:p:h<CR>
+
+" paste mode
+map <Leader>p :set paste<CR>
 
 " php documenting
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
