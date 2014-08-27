@@ -83,6 +83,8 @@ Bundle 'vim-scripts/ZoomWin'
 Bundle 'groenewege/vim-less'
 " c++ indentation
 Bundle 'vim-scripts/google.vim'
+" python autocomplete / navigation
+Bundle 'davidhalter/jedi-vim'
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
