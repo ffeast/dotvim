@@ -83,6 +83,8 @@ Bundle 'vim-scripts/ZoomWin'
 Bundle 'groenewege/vim-less'
 " c++ indentation
 Bundle 'vim-scripts/google.vim'
+" project root detector
+Bundle 'airblade/vim-rooter'
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
@@ -116,6 +118,12 @@ map <Leader>u <ESC>:UpdateTags -R %:p:h<CR>
 
 " paste mode
 map <Leader>p :set paste<CR>
+
+" python debugging
+map <Leader>d oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
+
+" taglist
+let Tlist_Use_Right_Window = 1
 
 " c++ namespaces
 set cino=N-s
