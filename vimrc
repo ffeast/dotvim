@@ -85,6 +85,8 @@ Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/google.vim'
 " project root detector
 Bundle 'airblade/vim-rooter'
+" python autocomplete / navigation
+Bundle 'davidhalter/jedi-vim'
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
