@@ -62,7 +62,7 @@ Bundle 'ffeast/vim-plugin-viewdoc'
 " nginx highlighting
 Bundle 'vim-scripts/nginx.vim'
 " allows for tab mapping
-Bundle 'ervandew/supertab'
+" Bundle 'ervandew/supertab'
 " ack from vim
 Bundle 'mileszs/ack.vim'
 " javascript
@@ -85,8 +85,10 @@ Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/google.vim'
 " project root detector
 Bundle 'airblade/vim-rooter'
-" python autocomplete / navigation
-Bundle 'davidhalter/jedi-vim'
+" better completion
+Bundle 'Valloric/YouCompleteMe'
+" cmd in window
+Bundle 'rosenfeld/conque-term'
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
@@ -100,13 +102,15 @@ let g:ack_default_options = ''
 " highlight word at cursor and then Ack it.
 nnoremap <leader>a *<C-O>:AckFromSearch!<CR>
 
+" goto definition
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+
 " nerdtree
 let g:NERDTreeDirArrows = 0
 let g:NERDTreeWinSize = 50
+let NERDTreeQuitOnOpen = 1
 map <Leader>f :NERDTreeToggle<CR>
 map <Leader>F :NERDTreeFind<CR>
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " ctags
 let g:easytags_async = 1
@@ -120,6 +124,9 @@ map <Leader>u <ESC>:UpdateTags -R %:p:h<CR>
 
 " paste mode
 map <Leader>p :set paste<CR>
+
+" console
+nnoremap <leader>c :ConqueTermSplit /bin/bash<CR><CR>
 
 " python debugging
 map <Leader>d oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
@@ -147,7 +154,7 @@ map <Leader>gp <ESC>:Git push<CR>
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
-map <Leader>c :TlistToggle<CR>
+map <Leader>l :TlistToggle<CR>
 
 " windows navigation
 nmap <C-h> <C-W>h
