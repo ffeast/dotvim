@@ -62,7 +62,7 @@ Bundle 'ffeast/vim-plugin-viewdoc'
 " nginx highlighting
 Bundle 'vim-scripts/nginx.vim'
 " allows for tab mapping
-" Bundle 'ervandew/supertab'
+Bundle 'ervandew/supertab'
 " ack from vim
 Bundle 'mileszs/ack.vim'
 " javascript
@@ -85,8 +85,8 @@ Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/google.vim'
 " project root detector
 Bundle 'airblade/vim-rooter'
-" better completion
-Bundle 'Valloric/YouCompleteMe'
+" python navigation
+Bundle 'davidhalter/jedi-vim'
 " cmd in window
 Bundle 'rosenfeld/conque-term'
 
