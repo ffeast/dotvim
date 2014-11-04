@@ -129,7 +129,7 @@ map <Leader>p :set paste<CR>
 nnoremap <leader>c :ConqueTermSplit /bin/bash<CR><CR>
 
 " python debugging
-map <Leader>d oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
+nnoremap <Leader>b oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
 
 " taglist
 let Tlist_Use_Right_Window = 1
