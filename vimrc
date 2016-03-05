@@ -1,5 +1,7 @@
+
 syntax on
 
+set nocompatible
 set tabstop         =4
 set shiftwidth      =4
 set softtabstop     =4
@@ -10,7 +12,6 @@ set undolevels      =100
 set t_Co            =256
 
 set autoindent
-set number
 set smarttab
 set expandtab
 set showcmd
@@ -18,77 +19,78 @@ set ruler
 set nobackup
 set noswapfile
 set novisualbell
-set autochdir
 set wildmenu
+
+filetype off
 
 colo koehler
 
-filetype off
-filetype plugin on
-filetype indent on
-
 " vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
 
 " plugins installation tool
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 " bottom line
-Bundle 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " awesome fs navigator
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " fs browser
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " tags window
-Bundle 'vim-scripts/taglist.vim'
+Plugin 'majutsushi/tagbar'
 " git wrapper
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " hg wrapper
-Bundle 'phleet/vim-mercenary'
+Plugin 'phleet/vim-mercenary'
 " repository viewer
-Bundle 'gregsexton/gitv'
+Plugin 'gregsexton/gitv'
 " easy commenting
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 " cool snippets & prerequisite for pdv
-Bundle 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 " req for php documentor
-Bundle 'tobyS/vmustache'
+Plugin 'tobyS/vmustache'
 " php documentor
-Bundle 'tobyS/pdv'
+Plugin 'tobyS/pdv'
 " handy task list navigator
-Bundle 'vim-scripts/TaskList.vim'
+Plugin 'vim-scripts/TaskList.vim'
 " doc viewer in vim
-Bundle 'ffeast/vim-plugin-viewdoc'
+Plugin 'ffeast/vim-plugin-viewdoc'
 " nginx highlighting
-Bundle 'vim-scripts/nginx.vim'
+Plugin 'vim-scripts/nginx.vim'
 " allows for tab mapping
-Bundle 'ervandew/supertab'
+"Plugin 'ervandew/supertab'
 " ack from vim
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 " javascript
-Bundle 'pangloss/vim-javascript'
-" req for easytags
-Bundle 'xolox/vim-misc'
-" ctags for all languages
-Bundle 'xolox/vim-easytags'
+Plugin 'pangloss/vim-javascript'
 " python indentation
-Bundle 'hynek/vim-python-pep8-indent'
+Plugin 'hynek/vim-python-pep8-indent'
 " ansible
-Bundle 'chase/vim-ansible-yaml'
+Plugin 'chase/vim-ansible-yaml'
 " vagrant
-Bundle 'markcornick/vim-vagrant'
+Plugin 'markcornick/vim-vagrant'
 " toggle between one window and multi-window
-Bundle 'vim-scripts/ZoomWin'
+Plugin 'vim-scripts/ZoomWin'
 " less
-Bundle 'groenewege/vim-less'
-" c++ indentation
-Bundle 'vim-scripts/google.vim'
+Plugin 'groenewege/vim-less'
 " project root detector
-Bundle 'airblade/vim-rooter'
-" python navigation
-Bundle 'davidhalter/jedi-vim'
-" cmd in window
-Bundle 'rosenfeld/conque-term'
+Plugin 'airblade/vim-rooter'
+" python
+Plugin 'davidhalter/jedi-vim'
+" fast text selection
+Plugin 'terryma/vim-expand-region'
+" whitespace highlight
+Plugin 'bronson/vim-trailing-whitespace'
+" funny snippets
+Plugin 'honza/vim-snippets'
+" experimental
+Plugin 'docunext/closetag.vim'
+call vundle#end()
+
+filetype plugin indent on
 
 " vim-ariline
 let g:airline#extensions#tabline#enabled = 1
@@ -96,46 +98,47 @@ let g:airline_theme = 'simple'
 
 " ctrlp
 map <Leader>b :CtrlPBuffer<CR>
+let g:ctrlp_regexp = 1
+
+" snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets='<s-tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 
 " ack
-let g:ack_default_options = ''
-" highlight word at cursor and then Ack it.
-nnoremap <leader>a *<C-O>:AckFromSearch!<CR>
+let g:ack_default_options = ' -s'
+nmap <leader>a *<C-O>:AckFromSearch!<CR>
+vnoremap <Leader>a y:Ack <C-r>=fnameescape(@")<CR><CR>
 
-" goto definition
-nnoremap <leader>g :YcmCompleter GoTo<CR>
+" root markers
+let s:custom_markers = ['Vagrantfile', 'Dockerfile', '.vimroot']
+let g:rooter_patterns = s:custom_markers + ['.git', '.hg']
+let g:ctrlp_root_markers = s:custom_markers
+
+" vim reload on vimrc save
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 " nerdtree
 let g:NERDTreeDirArrows = 0
 let g:NERDTreeWinSize = 50
-let NERDTreeQuitOnOpen = 1
-map <Leader>f :NERDTreeToggle<CR>
-map <Leader>F :NERDTreeFind<CR>
+let g:NERDTreeQuitOnOpen = 1
+map <F2> :NERDTreeToggle<CR>
+map <F3> :NERDTreeFind<CR>
 
-" ctags
-let g:easytags_async = 1
-let g:easytags_auto_update = 0
-let g:easytags_on_cursorhold = 0
-let b:easytags_auto_highlight = 0
-let g:easytags_events = ['BufWritePost']
-let g:easytags_by_filetype = '~/.vim/tags'
-map <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-map <Leader>u <ESC>:UpdateTags -R %:p:h<CR>
+" ctags indexing
+let g:ctags_lang = ['php', 'perl', 'javascript', 'java', 'c', 'lua', 'sql']
+let g:ctags_options = '--exclude=.git --exclude="*.min.js" --exclude=.hg --languages=' . join(g:ctags_lang, ',')
+function! CtagsReindexAll(options)
+    exec('!echo Reindexing project... && ctags -R ' . a:options)
+endfunction
+map <Leader>u <ESC>:call CtagsReindexAll(g:ctags_options)<CR><CR>:echom "Ctags updated"<CR><CR>
 
 " paste mode
-map <Leader>p :set paste<CR>
-
-" console
-nnoremap <leader>c :ConqueTermSplit /bin/bash<CR><CR>
+map <F4> :set paste<CR>
 
 " python debugging
-nnoremap <Leader>b oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
-
-" taglist
-let Tlist_Use_Right_Window = 1
-
-" c++ namespaces
-set cino=N-s
+map <Leader>d oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
 
 " php documenting
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
@@ -154,7 +157,8 @@ map <Leader>gp <ESC>:Git push<CR>
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
-map <Leader>l :TlistToggle<CR>
+" tagbar
+map <F5> :TagbarToggle<CR>
 
 " windows navigation
 nmap <C-h> <C-W>h
