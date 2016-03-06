@@ -10,6 +10,7 @@ set history         =500
 set laststatus      =2
 set undolevels      =100
 set t_Co            =256
+set colorcolumn     =80
 
 set autoindent
 set smarttab
@@ -61,7 +62,7 @@ Plugin 'ffeast/vim-plugin-viewdoc'
 " nginx highlighting
 Plugin 'vim-scripts/nginx.vim'
 " allows for tab mapping
-"Plugin 'ervandew/supertab'
+Plugin 'ervandew/supertab'
 " ack from vim
 Plugin 'mileszs/ack.vim'
 " javascript
@@ -128,11 +129,15 @@ map <F3> :NERDTreeFind<CR>
 
 " ctags indexing
 let g:ctags_lang = ['php', 'perl', 'javascript', 'java', 'c', 'lua', 'sql']
-let g:ctags_options = '--exclude=.git --exclude="*.min.js" --exclude=.hg --languages=' . join(g:ctags_lang, ',')
+let g:ctags_options =
+    \'--exclude=.git --exclude="*.min.js"--exclude=.hg --languages='
+    \. join(g:ctags_lang, ',')
 function! CtagsReindexAll(options)
     exec('!echo Reindexing project... && ctags -R ' . a:options)
 endfunction
-map <Leader>u <ESC>:call CtagsReindexAll(g:ctags_options)<CR><CR>:echom "Ctags updated"<CR><CR>
+map <Leader>u <ESC>
+    \:call CtagsReindexAll(g:ctags_options)<CR><CR>
+    \:echom "Ctags updated"<CR><CR>
 
 " paste mode
 map <F4> :set paste<CR>
