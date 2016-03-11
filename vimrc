@@ -89,6 +89,8 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'honza/vim-snippets'
 " experimental
 Plugin 'docunext/closetag.vim'
+" vdebug
+Plugin 'joonty/vdebug'
 call vundle#end()
 
 filetype plugin indent on
@@ -124,8 +126,8 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 let g:NERDTreeDirArrows = 0
 let g:NERDTreeWinSize = 50
 let g:NERDTreeQuitOnOpen = 1
-map <F2> :NERDTreeToggle<CR>
-map <F3> :NERDTreeFind<CR>
+map <Leader>f :NERDTreeToggle<CR>
+map <Leader>F :NERDTreeFind<CR>
 
 " ctags indexing
 let g:ctags_lang = ['php', 'perl', 'javascript', 'java', 'c', 'lua', 'sql']
@@ -140,10 +142,10 @@ map <Leader>u <ESC>
     \:echom "Ctags updated"<CR><CR>
 
 " paste mode
-map <F4> :set paste<CR>
+map <Leader>p :set paste<CR>
 
 " python debugging
-map <Leader>d oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
+map <Leader>i oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
 
 " php documenting
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
@@ -163,7 +165,7 @@ map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
 " tagbar
-map <F5> :TagbarToggle<CR>
+map <Leader>c :TagbarToggle<CR>
 
 " windows navigation
 nmap <C-h> <C-W>h
