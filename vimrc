@@ -58,7 +58,7 @@ Plugin 'tobyS/pdv'
 " handy task list navigator
 Plugin 'vim-scripts/TaskList.vim'
 " doc viewer in vim
-Plugin 'ffeast/vim-plugin-viewdoc'
+Plugin 'powerman/vim-plugin-viewdoc'
 " nginx highlighting
 Plugin 'vim-scripts/nginx.vim'
 " allows for tab mapping
