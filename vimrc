@@ -176,3 +176,8 @@ map <Leader>q <C-W>q
 
 " nginx
 au BufRead,BufNewFile /etc/nginx/* if &ft == '' | setfiletype nginx | endif
+
+" local settings
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
