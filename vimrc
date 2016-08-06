@@ -1,4 +1,3 @@
-
 syntax on
 
 set nocompatible
@@ -130,15 +129,13 @@ map <Leader>f :NERDTreeToggle<CR>
 map <Leader>F :NERDTreeFind<CR>
 
 " ctags indexing
-let g:ctags_lang = ['php', 'perl', 'javascript', 'java', 'c', 'lua', 'sql']
-let g:ctags_options =
-    \'--exclude=.git --exclude="*.min.js"--exclude=.hg --languages='
-    \. join(g:ctags_lang, ',')
-function! CtagsReindexAll(options)
-    exec('!echo Reindexing project... && ctags -R ' . a:options)
+function! CtagsReindexAll()
+    exec('!echo Reindexing project... && ctags -R --options='
+         \. $HOME
+         \. '/.vim/ctags.conf')
 endfunction
 map <Leader>u <ESC>
-    \:call CtagsReindexAll(g:ctags_options)<CR><CR>
+    \:call CtagsReindexAll()<CR><CR>
     \:echom "Ctags updated"<CR><CR>
 
 " paste mode
