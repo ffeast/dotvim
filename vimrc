@@ -146,7 +146,7 @@ map <Leader>p :set paste<CR>
 
 " python debugging
 map <Leader>i oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
-map <Leader>u oimport pudb; pu.db  #FIXME: breakpoint<ESC>
+map <Leader>y oimport pudb; pu.db  #FIXME: breakpoint<ESC>
 
 " php documenting
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
