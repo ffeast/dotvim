@@ -90,6 +90,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'docunext/closetag.vim'
 " vdebug
 Plugin 'joonty/vdebug'
+" syntastic
+Plugin 'scrooloose/syntastic'
 call vundle#end()
 
 filetype plugin indent on
@@ -101,6 +103,13 @@ let g:airline_theme = 'simple'
 " ctrlp
 map <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_regexp = 1
+
+" syntastic
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
