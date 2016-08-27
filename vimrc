@@ -88,6 +88,8 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'honza/vim-snippets'
 " experimental
 Plugin 'docunext/closetag.vim'
+" py docstrings
+Plugin 'heavenshell/vim-pydocstring'
 " vdebug
 Plugin 'joonty/vdebug'
 " syntastic
@@ -154,9 +156,12 @@ map <Leader>p :set paste<CR>
 map <Leader>i oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
 map <Leader>y oimport pudb; pu.db  #FIXME: breakpoint<ESC>
 
+" python documenting
+autocmd FileType python map <Leader>h <Plug>(pydocstring)<CR>
+
 " php documenting
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
-map <Leader>h :call pdv#DocumentWithSnip()<CR>
+autocmd FileType php map <Leader>h :call pdv#DocumentWithSnip()<CR>
 
 " git-fugitive
 map <Leader>gs <ESC>:Gstatus<CR>
