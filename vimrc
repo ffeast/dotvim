@@ -84,8 +84,8 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'terryma/vim-expand-region'
 " whitespace highlight
 Plugin 'bronson/vim-trailing-whitespace'
-" funny snippets
-Plugin 'honza/vim-snippets'
+" customized snippets
+Plugin 'ffeast/vim-snippets'
 " experimental
 Plugin 'docunext/closetag.vim'
 " py docstrings
@@ -100,6 +100,8 @@ Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'othree/javascript-libraries-syntax.vim'
 " typescript support
 Plugin 'leafgarland/typescript-vim'
+" vim + tmux
+Plugin 'tmux-plugins/vim-tmux-focus-events'
 call vundle#end()
 
 filetype plugin indent on
@@ -127,7 +129,9 @@ set statusline+=%*
 let g:used_javascript_libs = 'underscore,angularjs,angularui,angularuirouter'
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
+" we don't need UltiSnips, only vim-snippets
+let g:UltiSnipsSnippetDirectories = []
+let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsListSnippets='<s-tab>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
 let g:UltiSnipsJumpBackwardTrigger='<c-k>'
@@ -161,7 +165,7 @@ function! CtagsReindexAll()
 endfunction
 map <Leader>u <ESC>
     \:call CtagsReindexAll()<CR><CR>
-    \:echom "Ctags updated"<CR><CR>
+    \:echom 'Ctags updated'<CR><CR>
 
 " paste mode
 map <F2> :set paste<CR>
@@ -170,11 +174,14 @@ map <F2> :set paste<CR>
 map <F3> oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
 map <F4> oimport pudb; pu.db  #FIXME: breakpoint<ESC>
 
+" whitespace trimming
+map <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 " python documenting
 autocmd FileType python map <Leader>h <Plug>(pydocstring)<CR>
 
 " php documenting
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip/"
+let g:pdv_template_dir = $HOME . '/.vim/bundle/pdv/templates_snip/'
 autocmd FileType php map <Leader>h :call pdv#DocumentWithSnip()<CR>
 
 " git-fugitive
@@ -204,6 +211,6 @@ map <Leader>q <C-W>q
 au BufRead,BufNewFile /etc/nginx/* if &ft == '' | setfiletype nginx | endif
 
 " local settings
-if filereadable(glob("~/.vimrc.local"))
+if filereadable(glob('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
