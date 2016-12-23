@@ -94,6 +94,12 @@ Plugin 'heavenshell/vim-pydocstring'
 Plugin 'joonty/vdebug'
 " syntastic
 Plugin 'scrooloose/syntastic'
+" bookmarks
+Plugin 'MattesGroeger/vim-bookmarks'
+" js libs syntax
+Plugin 'othree/javascript-libraries-syntax.vim'
+" typescript support
+Plugin 'leafgarland/typescript-vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -105,6 +111,10 @@ let g:airline_theme = 'simple'
 " ctrlp
 map <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_regexp = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(pyc|so)$',
+  \ }
 
 " syntastic
 let g:syntastic_php_checkers=['php', 'phpcs']
@@ -112,6 +122,9 @@ let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+" js syntax
+let g:used_javascript_libs = 'underscore,angularjs,angularui,angularuirouter'
 
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -123,6 +136,7 @@ let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 let g:ack_default_options = ' -s'
 nmap <leader>a *<C-O>:AckFromSearch!<CR>
 vnoremap <Leader>a y:Ack <C-r>=fnameescape(@")<CR><CR>
+cnoreabbrev a Ack
 
 " root markers
 let s:custom_markers = ['Vagrantfile', 'Dockerfile', '.vimroot']
@@ -150,11 +164,11 @@ map <Leader>u <ESC>
     \:echom "Ctags updated"<CR><CR>
 
 " paste mode
-map <Leader>p :set paste<CR>
+map <F2> :set paste<CR>
 
-" python debugging
-map <Leader>i oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
-map <Leader>y oimport pudb; pu.db  #FIXME: breakpoint<ESC>
+" debugging
+map <F3> oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
+map <F4> oimport pudb; pu.db  #FIXME: breakpoint<ESC>
 
 " python documenting
 autocmd FileType python map <Leader>h <Plug>(pydocstring)<CR>
