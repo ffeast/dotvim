@@ -104,6 +104,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'simeji/winresizer'
 " typescript
 Plugin 'leafgarland/typescript-vim'
+" changes indication
+Plugin 'mhinz/vim-signify'
 
 call vundle#end()
 
