@@ -31,11 +31,11 @@ call vundle#begin()
 
 " plugins installation tool
 Plugin 'gmarik/vundle'
-" bottom line
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 " awesome fs navigator
 Plugin 'kien/ctrlp.vim'
+" statusline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " fs browser
 Plugin 'scrooloose/nerdtree'
 " tags window
@@ -43,7 +43,7 @@ Plugin 'majutsushi/tagbar'
 " git wrapper
 Plugin 'tpope/vim-fugitive'
 " hg wrapper
-Plugin 'phleet/vim-mercenary'
+Plugin 'ludovicchabant/vim-lawrencium'
 " repository viewer
 Plugin 'gregsexton/gitv'
 " easy commenting
@@ -66,6 +66,8 @@ Plugin 'ervandew/supertab'
 Plugin 'mileszs/ack.vim'
 " javascript
 Plugin 'pangloss/vim-javascript'
+" jsdoc
+Plugin 'heavenshell/vim-jsdoc'
 " python indentation
 Plugin 'hynek/vim-python-pep8-indent'
 " ansible
@@ -91,17 +93,18 @@ Plugin 'docunext/closetag.vim'
 " py docstrings
 Plugin 'heavenshell/vim-pydocstring'
 " vdebug
-Plugin 'joonty/vdebug'
+"Plugin 'joonty/vdebug'
 " syntastic
 Plugin 'scrooloose/syntastic'
 " bookmarks
 Plugin 'MattesGroeger/vim-bookmarks'
-" js libs syntax
-Plugin 'othree/javascript-libraries-syntax.vim'
-" typescript support
+" surround
+Plugin 'tpope/vim-surround'
+" easy resizing
+Plugin 'simeji/winresizer'
+" typescript
 Plugin 'leafgarland/typescript-vim'
-" vim + tmux
-Plugin 'tmux-plugins/vim-tmux-focus-events'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -120,13 +123,12 @@ let g:ctrlp_custom_ignore = {
 
 " syntastic
 let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_javascript_checkers=['eslint']
+"let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-" js syntax
-let g:used_javascript_libs = 'underscore,angularjs,angularui,angularuirouter'
 
 " snippets
 " we don't need UltiSnips, only vim-snippets
@@ -168,14 +170,15 @@ map <Leader>u <ESC>
     \:echom 'Ctags updated'<CR><CR>
 
 " paste mode
-map <F2> :set paste<CR>
+map <Leader>p :set paste<CR>
+map <Leader>up :set nopaste<CR>
 
 " debugging
-map <F3> oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
-map <F4> oimport pudb; pu.db  #FIXME: breakpoint<ESC>
+map <Leader>i oimport ipdb; ipdb.set_trace()  #FIXME: breakpoint<ESC>
+map <Leader>r odebugger; //FIXME: breakpoint<ESC>
 
 " whitespace trimming
-map <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+map <Leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " python documenting
 autocmd FileType python map <Leader>h <Plug>(pydocstring)<CR>
@@ -183,6 +186,9 @@ autocmd FileType python map <Leader>h <Plug>(pydocstring)<CR>
 " php documenting
 let g:pdv_template_dir = $HOME . '/.vim/bundle/pdv/templates_snip/'
 autocmd FileType php map <Leader>h :call pdv#DocumentWithSnip()<CR>
+
+" javascript documenting
+autocmd FileType javascript map <Leader>h <Plug>(jsdoc)
 
 " git-fugitive
 map <Leader>gs <ESC>:Gstatus<CR>
@@ -192,6 +198,15 @@ map <Leader>gw <ESC>:Gwrite<CR>
 map <Leader>gc <ESC>:Gcommit<CR>
 map <Leader>gca <ESC>:Gcommit -a<CR>
 map <Leader>gp <ESC>:Git push<CR>
+
+" vim-lawrencium
+map <Leader>hb <ESC>:Hgblame<CR>
+map <Leader>hd <ESC>:Hgvdiff<CR>
+map <Leader>hs <ESC>:Hgstatus<CR>
+map <Leader>hb <ESC>:Hgblame<CR>
+map <Leader>ht <ESC>:Hg tip<CR>
+map <Leader>hl <ESC>:Hglogthis<CR>
+map <Leader>hb <ESC>:Hgannotate<CR>
 
 " gitv
 map <Leader>gv <ESC>:Gitv<CR>
@@ -211,6 +226,6 @@ map <Leader>q <C-W>q
 au BufRead,BufNewFile /etc/nginx/* if &ft == '' | setfiletype nginx | endif
 
 " local settings
-if filereadable(glob('~/.vimrc.local'))
-    source ~/.vimrc.local
+if filereadable(glob('~/.vim/local/vimrc'))
+    source ~/.vim/local/vimrc
 endif
