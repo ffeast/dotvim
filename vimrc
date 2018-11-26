@@ -106,6 +106,8 @@ Plugin 'simeji/winresizer'
 Plugin 'leafgarland/typescript-vim'
 " changes indication
 Plugin 'mhinz/vim-signify'
+" .vimrc per project
+Plugin 'thinca/vim-localrc'
 
 call vundle#end()
 
