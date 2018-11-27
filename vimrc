@@ -64,10 +64,6 @@ Plugin 'vim-scripts/nginx.vim'
 Plugin 'ervandew/supertab'
 " ack from vim
 Plugin 'mileszs/ack.vim'
-" javascript
-Plugin 'pangloss/vim-javascript'
-" jsdoc
-Plugin 'heavenshell/vim-jsdoc'
 " python indentation
 Plugin 'hynek/vim-python-pep8-indent'
 " ansible
@@ -102,8 +98,14 @@ Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'tpope/vim-surround'
 " easy resizing
 Plugin 'simeji/winresizer'
+" javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'jason0x43/vim-js-indent'
+Plugin 'heavenshell/vim-jsdoc'
 " typescript
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/vim-js-pretty-template'
+Plugin 'Quramy/tsuquyomi'
 " changes indication
 Plugin 'mhinz/vim-signify'
 " .vimrc per project
@@ -134,6 +136,18 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" omni-completion + supertab working together
+" taken from https://github.com/ervandew/supertab/issues/99
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
+autocmd FileType *
+      \if &omnifunc != '' |
+      \call SuperTabChain(&omnifunc, "<c-p>") |
+      \call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+      \endif
+
 " snippets
 " we don't need UltiSnips, only vim-snippets
 let g:UltiSnipsSnippetDirectories = []
@@ -141,6 +155,11 @@ let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsListSnippets='<s-tab>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
 let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+
+" typescript configuration
+let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " ack
 let g:ack_default_options = ' -s'
