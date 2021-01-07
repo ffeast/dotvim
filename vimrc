@@ -110,6 +110,7 @@ Plugin 'Quramy/tsuquyomi'
 Plugin 'mhinz/vim-signify'
 " .vimrc per project
 Plugin 'thinca/vim-localrc'
+Plugin 'xavierd/clang_complete'
 
 call vundle#end()
 
@@ -249,6 +250,6 @@ map <Leader>q <C-W>q
 au BufRead,BufNewFile /etc/nginx/* if &ft == '' | setfiletype nginx | endif
 
 " local settings
-if filereadable(glob('~/.vim/local/vimrc'))
-    source ~/.vim/local/vimrc
+if filereadable(glob('~/.vimrc.local'))
+    source ~/.vimrc.local
 endif
