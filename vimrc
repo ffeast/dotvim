@@ -23,8 +23,6 @@ set wildmenu
 
 filetype off
 
-colo koehler
-
 " vundle
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
@@ -42,8 +40,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 " git wrapper
 Plugin 'tpope/vim-fugitive'
-" hg wrapper
-Plugin 'ludovicchabant/vim-lawrencium'
 " repository viewer
 Plugin 'gregsexton/gitv'
 " easy commenting
@@ -68,8 +64,6 @@ Plugin 'mileszs/ack.vim'
 Plugin 'hynek/vim-python-pep8-indent'
 " ansible
 Plugin 'chase/vim-ansible-yaml'
-" vagrant
-Plugin 'markcornick/vim-vagrant'
 " toggle between one window and multi-window
 Plugin 'vim-scripts/ZoomWin'
 " less
@@ -89,7 +83,7 @@ Plugin 'docunext/closetag.vim'
 " py docstrings
 Plugin 'heavenshell/vim-pydocstring'
 " vdebug
-"Plugin 'joonty/vdebug'
+Plugin 'joonty/vdebug'
 " syntastic
 Plugin 'scrooloose/syntastic'
 " bookmarks
@@ -215,12 +209,12 @@ autocmd FileType php map <Leader>h :call pdv#DocumentWithSnip()<CR>
 autocmd FileType javascript map <Leader>h <Plug>(jsdoc)
 
 " git-fugitive
-map <Leader>gs <ESC>:Gstatus<CR>
-map <Leader>gd <ESC>:Gdiff<CR>
-map <Leader>gb <ESC>:Gblame<CR>
-map <Leader>gw <ESC>:Gwrite<CR>
-map <Leader>gc <ESC>:Gcommit<CR>
-map <Leader>gca <ESC>:Gcommit -a<CR>
+map <Leader>gs <ESC>:Git status<CR>
+map <Leader>gd <ESC>:Git diff<CR>
+map <Leader>gb <ESC>:Git blame<CR>
+map <Leader>gw <ESC>:Git write<CR>
+map <Leader>gc <ESC>:Git commit<CR>
+map <Leader>gca <ESC>:Git commit -a<CR>
 map <Leader>gp <ESC>:Git push<CR>
 
 " vim-lawrencium
