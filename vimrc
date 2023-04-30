@@ -105,6 +105,10 @@ Plugin 'mhinz/vim-signify'
 " .vimrc per project
 Plugin 'thinca/vim-localrc'
 Plugin 'xavierd/clang_complete'
+" plantuml
+Plugin 'aklt/plantuml-syntax'
+Plugin 'tyru/open-browser.vim.git'
+Plugin 'weirongxu/plantuml-previewer.vim.git'
 
 call vundle#end()
 
@@ -217,14 +221,8 @@ map <Leader>gc <ESC>:Git commit<CR>
 map <Leader>gca <ESC>:Git commit -a<CR>
 map <Leader>gp <ESC>:Git push<CR>
 
-" vim-lawrencium
-map <Leader>hb <ESC>:Hgblame<CR>
-map <Leader>hd <ESC>:Hgvdiff<CR>
-map <Leader>hs <ESC>:Hgstatus<CR>
-map <Leader>hb <ESC>:Hgblame<CR>
-map <Leader>ht <ESC>:Hg tip<CR>
-map <Leader>hl <ESC>:Hglogthis<CR>
-map <Leader>hb <ESC>:Hgannotate<CR>
+" plantuml
+map <Leader>po <ESC>:PlantumlOpen<CR>
 
 " gitv
 map <Leader>gv <ESC>:Gitv<CR>
